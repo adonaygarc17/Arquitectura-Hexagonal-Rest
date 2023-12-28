@@ -39,5 +39,5 @@ public class ProductRangeValidator implements ConstraintValidator<ProductRangeVa
 
     private boolean assertValidLimitRange(int limit) {return  limit >= 1  && limit <= 100;}
 
-    private boolean assertValidSikpRange (int limit ,int skip) {return  skip >0 && skip <= (100 - limit);}
+    private boolean assertValidSikpRange (int limit ,int skip) {return  skip >= 0 && skip <= (100 - limit);}
 }
