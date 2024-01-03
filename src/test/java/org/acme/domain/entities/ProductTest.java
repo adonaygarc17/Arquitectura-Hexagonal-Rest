@@ -9,42 +9,53 @@ import static org.junit.jupiter.api.Assertions.*;
 class ProductTest {
 
     @Test
-    void calculateSubTotal() {
+    void whenCalculateSubTotalWhenRecivedPriceDiscount() {
         double descuento = Product.calculateDiscountTotal(239,12);
         double respuest = 28.68;
         assertEquals(respuest,descuento);
     }
 
     @Test
-    void calculateDiscountTotal() {
+    void shouldCalculateDiscountTotalWhen() {
         double descuento = Product.calculateDiscountTotal(239,12);
         double respuest = 28.68;
         assertEquals(respuest,descuento);
     }
 
     @Test
-    void calculateTaxProduct() {
+    void shouldCalculateTaxWhenRecivedProduct() {
         double tax = Product.calculateTaxProduct(239,28.68,"Smartphone");
         double respuesta = 27.34;
         assertEquals(tax,respuesta);
     }
     @Test
-    void testCalculateTaxProductGrosery(){
+    void shouldCalculateTaxProductWhenGroseryCategory(){
         double tax = Product.calculateTaxProduct(239,28.68,"groceries");
         double respuesta = 16.83;
         assertEquals(tax,respuesta);
     }
     @Test
-    void testCalculateTaxProductSkin(){
+    void shouldCalculateTaxProductWhenSkincareCategory(){
         double tax = Product.calculateTaxProduct(239,28.68,"skincare");
         double respuesta = 8.41;
         assertEquals(tax,respuesta);
     }
-
     @Test
-    void calculateFinalPrice() {
+    void shouldCalculateFinalPriceWhenPriceDiscountPercentage() {
         double descuento = Product.calculateDiscountTotal(239,12);
         double respuest = 28.68;
         assertEquals(respuest,descuento);
+    }
+    @Test
+    void shouldCalculateAllWhenRecivedProduct(){
+        Product p = new Product(1,"iPhone9","smartphones",
+                "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
+                12,3,"Apple",549);
+        assertAll(
+                () -> assertEquals(65.88,p.getDiscountTotal()),
+                () -> assertEquals(483.12,p.getSubtotal()),
+                () -> assertEquals(62.81,p.getTax()),
+                () ->assertEquals(545.93,p.getFinalPrice())
+        );
     }
 }

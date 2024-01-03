@@ -10,12 +10,8 @@ import org.acme.domain.entities.Factura;
 public class FacturaServiceImplement implements IFacturaService {
 
 
-    private final IProducts iProducts;
-
-    @Inject
-    public FacturaServiceImplement(IProducts iProducts){
-        this.iProducts = iProducts;
-    }
+   @Inject
+   IProducts iProducts;
 
 
     @Override

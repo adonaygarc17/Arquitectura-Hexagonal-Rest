@@ -6,10 +6,12 @@ import jakarta.ws.rs.ext.ExceptionMapper;
 import jakarta.ws.rs.ext.Provider;
 import org.acme.utils.exceptions.dtos.ErrorResponse;
 
+import java.net.SocketTimeoutException;
+
 @Provider
-public class TimeOutExceptionMapper implements ExceptionMapper <ProcessingException> {
+public class SocketTimeOutExceptionMapper implements ExceptionMapper <SocketTimeoutException> {
     @Override
-    public Response toResponse(ProcessingException e ){
+    public Response toResponse(SocketTimeoutException e ){
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setId("504 gateway timeout");
         errorResponse.setDescription("Se ha generado un timeout al obtener los productos");

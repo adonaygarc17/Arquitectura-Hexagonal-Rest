@@ -1,8 +1,11 @@
 package org.acme.domain.entities;
 
+import lombok.Getter;
+
 import java.text.DecimalFormat;
 import java.util.List;
 
+@Getter
 public class Factura {
 
     List<Product> products;
@@ -41,43 +44,12 @@ public class Factura {
         return total;
     }
 
-    public void setTotal(double total) {
-        this.total = total;
-    }
 
     public List<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
 
-
-
-    public double getFacturaTax() {
-        return facturaTax;
-    }
-
-    public void setFacturaTax(double facturaTax) {
-        this.facturaTax = facturaTax;
-    }
-
-    public double getTotalDiscount() {
-        return totalDiscount;
-    }
-
-    public void setTotalDiscount(double totalDiscount) {
-        this.totalDiscount = totalDiscount;
-    }
-
-    public double getFacturaSubTotal() {
-        return facturaSubTotal;
-    }
-
-    public void setFacturaSubTotal(double facturaSubTotal) {
-        this.facturaSubTotal = facturaSubTotal;
-    }
 
     public double toDecimal(double n){
         DecimalFormat df =  new DecimalFormat("###.##");

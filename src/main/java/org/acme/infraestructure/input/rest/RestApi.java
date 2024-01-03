@@ -47,18 +47,14 @@ import java.util.ArrayList;
 @Path("/factura")
 public class RestApi {
 
-  private final IFacturaService facturaService;
-
-  @Inject
-  public RestApi(IFacturaService facturaService){
-    this.facturaService = facturaService;
-  }
+@Inject
+IFacturaService facturaService;
 
 
 
   @POST
   @Produces(MediaType.APPLICATION_JSON)
-  public Response getDefinedProducts(@NotNull @QueryParam("skip") int skip, @NotNull @QueryParam("limit") int limit){
+  public Response getFactura(@NotNull @QueryParam("skip") int skip, @NotNull @QueryParam("limit") int limit){
 
     return Response.ok(this.createFactura(facturaService.createFactura(skip,limit))).build();
 

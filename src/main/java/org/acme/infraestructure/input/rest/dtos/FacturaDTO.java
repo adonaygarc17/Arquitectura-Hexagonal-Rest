@@ -28,36 +28,21 @@ public class FacturaDTO {
         return facturaSubtotal;
     }
 
-    public void setFacturaSubtotal(double facturaSubtotal) {
-        this.facturaSubtotal = facturaSubtotal;
-    }
     @JsonbProperty("facturaDescuento")
     public double getTotalDiscount() {
         return totalDiscount;
     }
 
-    public void setTotalDiscount(double totalDiscount) {
-        this.totalDiscount = totalDiscount;
-    }
     @JsonbProperty("facturaImpuestos")
     public double getFacturaTax() {
         return facturaTax;
     }
 
-    public void setFacturaTax(double facturaTax) {
-        this.facturaTax = facturaTax;
-    }
 
     @JsonbProperty("productos")
     public List<FacturaProductDTO> getProducts() {
         return products;
     }
-
-    public void setProducts(List<FacturaProductDTO> products) {
-        this.products = products;
-    }
-
-
 
 
     @JsonbProperty("facturaTotal")
@@ -65,7 +50,4 @@ public class FacturaDTO {
         return total;
     }
 
-    public void setTotal(double total) {
-        this.total = total;
-    }
 }

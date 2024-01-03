@@ -3,6 +3,7 @@ package org.acme.utils.exceptions;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.ExceptionMapper;
 import jakarta.ws.rs.ext.Provider;
+import org.acme.domain.entities.Factura;
 import org.acme.utils.exceptions.dtos.ErrorResponse;
 
 import java.util.UUID;
@@ -19,4 +20,6 @@ public class ThrowableMapper implements ExceptionMapper<Throwable> {
         return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(errorResponse).build();
 
     }
+
+
 }

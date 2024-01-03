@@ -1,9 +1,12 @@
 package org.acme.domain.entities;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.text.DecimalFormat;
 import java.util.Objects;
 
-
+@Getter
 public class Product {
 
     public int id;
@@ -68,103 +71,6 @@ public class Product {
     public static double calculateFinalPrice (double price, double discountTotal, double tax){
         return toDecimal(price - discountTotal + tax);
     }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public String getThumbnail() {
-        return thumbnail;
-    }
-
-    public void setThumbnail(String thumbnail) {
-        this.thumbnail = thumbnail;
-    }
-
-    public double getDiscountPercentage() {
-        return discountPercentage;
-    }
-
-    public void setDiscountPercentage(double discountPercentage) {
-        this.discountPercentage = discountPercentage;
-    }
-
-    public int getStock() {
-        return stock;
-    }
-
-    public void setStock(int stock) {
-        this.stock = stock;
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public double getDiscountTotal() {
-        return discountTotal;
-    }
-
-    public void setDiscountTotal(double discountTotal) {
-        this.discountTotal = discountTotal;
-    }
-
-    public double getTax() {
-        return tax;
-    }
-
-    public void setTax(double tax) {
-        this.tax = tax;
-    }
-
-    public double getSubtotal() {
-        return subtotal;
-    }
-
-    public void setSubtotal(double subtotal) {
-        this.subtotal = subtotal;
-    }
-
-    public double getFinalPrice() {
-        return finalPrice;
-    }
-
-    public void setFinalPrice(double finalPrice) {
-        this.finalPrice = finalPrice;
-    }
-
 
     public static double toDecimal(double n){
         DecimalFormat df =  new DecimalFormat("###.##");
