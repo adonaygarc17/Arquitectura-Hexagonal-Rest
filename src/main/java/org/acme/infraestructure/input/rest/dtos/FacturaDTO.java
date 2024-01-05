@@ -1,12 +1,12 @@
 package org.acme.infraestructure.input.rest.dtos;
 
-import jakarta.json.bind.annotation.JsonbProperty;
-import jakarta.json.bind.annotation.JsonbPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import java.util.List;
 
 
-@JsonbPropertyOrder({"products",  "totalDiscount","facturaTax","facturaSubtotal","total"})
+@JsonPropertyOrder({"products",  "totalDiscount","facturaTax","facturaSubtotal","total"})
 public class FacturaDTO {
 
     private List<FacturaProductDTO> products;
@@ -23,29 +23,29 @@ public class FacturaDTO {
         this.total = total;
     }
 
-    @JsonbProperty("facturaSubtotal")
+    @JsonProperty("facturaSubtotal")
     public double getFacturaSubtotal() {
         return facturaSubtotal;
     }
 
-    @JsonbProperty("facturaDescuento")
+    @JsonProperty("facturaDescuento")
     public double getTotalDiscount() {
         return totalDiscount;
     }
 
-    @JsonbProperty("facturaImpuestos")
+    @JsonProperty("facturaImpuestos")
     public double getFacturaTax() {
         return facturaTax;
     }
 
 
-    @JsonbProperty("productos")
+    @JsonProperty("productos")
     public List<FacturaProductDTO> getProducts() {
         return products;
     }
 
 
-    @JsonbProperty("facturaTotal")
+    @JsonProperty("facturaTotal")
     public double getTotal() {
         return total;
     }

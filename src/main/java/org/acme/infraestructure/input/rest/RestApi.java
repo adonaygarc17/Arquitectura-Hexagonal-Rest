@@ -5,7 +5,7 @@ import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import org.acme.application.interfaces.input.IFacturaService;
+import org.acme.application.interfaces.input.IFacturaServiceRest;
 import org.acme.utils.exceptions.dtos.ErrorResponse;
 import org.acme.domain.entities.Factura;
 import org.acme.domain.entities.Product;
@@ -48,9 +48,7 @@ import java.util.ArrayList;
 public class RestApi {
 
 @Inject
-IFacturaService facturaService;
-
-
+IFacturaServiceRest facturaService;
 
   @POST
   @Produces(MediaType.APPLICATION_JSON)

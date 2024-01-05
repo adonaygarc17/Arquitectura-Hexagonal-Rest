@@ -1,15 +1,15 @@
 package org.acme.utils.exceptions.dtos;
 
-import jakarta.json.bind.annotation.JsonbProperty;
-import jakarta.json.bind.annotation.JsonbPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-@JsonbPropertyOrder({"id", "description"})
+@JsonPropertyOrder({"id", "description"})
 public class ErrorResponse {
 
     private String description;
     private String id;
 
-    @JsonbProperty("description")
+    @JsonProperty("description")
     public String getDescription() {
         return description;
     }
@@ -18,7 +18,7 @@ public class ErrorResponse {
         this.description = description;
     }
 
-    @JsonbProperty("id")
+    @JsonProperty("id")
     public String getId() {
         return id;
     }

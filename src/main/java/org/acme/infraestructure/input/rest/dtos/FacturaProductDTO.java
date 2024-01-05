@@ -1,9 +1,10 @@
 package org.acme.infraestructure.input.rest.dtos;
 
-import jakarta.json.bind.annotation.JsonbProperty;
-import jakarta.json.bind.annotation.JsonbPropertyOrder;
 
-@JsonbPropertyOrder({"id","title","description","price","discountPercentage", "stock", "brand","category", "thumbnail" })
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+@JsonPropertyOrder({"id","title","description","price","discountPercentage", "stock", "brand","category", "thumbnail" })
 public class FacturaProductDTO {
     private int id;
     private String title;
@@ -28,7 +29,7 @@ public class FacturaProductDTO {
         this.finalPrice = finalPrice;
     }
 
-    @JsonbProperty("precio")
+    @JsonProperty("precio")
     public Double getPrice() {
         return price;
     }
@@ -37,37 +38,37 @@ public class FacturaProductDTO {
         return id;
     }
 
-    @JsonbProperty("titulo")
+    @JsonProperty("titulo")
     public String getTitle() {
         return title;
     }
 
-    @JsonbProperty("categoria")
+    @JsonProperty("categoria")
     public String getCategory() {
         return category;
     }
 
-    @JsonbProperty("marca")
+    @JsonProperty("marca")
     public String getBrand() {
         return brand;
     }
 
-    @JsonbProperty("thumbnail")
+    @JsonProperty("thumbnail")
     public String getThumbnail() {
         return thumbnail;
     }
 
-    @JsonbProperty("porcentajeDescuento")
+    @JsonProperty("porcentajeDescuento")
     public double getDiscountPercentage() {
         return discountPercentage;
     }
 
-    @JsonbProperty("montoDescuento")
+    @JsonProperty("montoDescuento")
     public double getDiscountAmount() {
         return discountAmount;
     }
 
-    @JsonbProperty("precioFinal")
+    @JsonProperty("precioFinal")
     public double getFinalPrice() {
         return finalPrice;
     }

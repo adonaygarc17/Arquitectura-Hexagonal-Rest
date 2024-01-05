@@ -1,8 +1,8 @@
-package org.acme.infraestructure.output;
+package org.acme.infraestructure.output.rest;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import org.acme.application.interfaces.output.IProductService;
-import org.acme.application.interfaces.output.IProducts;
+import org.acme.application.interfaces.output.IProductsRest;
 import org.acme.domain.entities.Product;
 import org.acme.infraestructure.input.rest.dtos.ProductDTO;
 import org.acme.infraestructure.input.rest.dtos.ResponseDTO;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @ApplicationScoped
-public class RestProducts implements IProducts {
+public class ProductsRestImplement implements IProductsRest {
 
     @RestClient
     IProductService productService;
