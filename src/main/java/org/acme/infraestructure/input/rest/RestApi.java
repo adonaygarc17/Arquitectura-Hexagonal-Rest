@@ -52,9 +52,9 @@ IFacturaServiceRest facturaService;
 
   @POST
   @Produces(MediaType.APPLICATION_JSON)
-  public Response getFactura(@NotNull @QueryParam("skip") int skip, @NotNull @QueryParam("limit") int limit){
+  public Response getFactura( @NotNull @QueryParam("limit") int limit, @NotNull @QueryParam("skip") int skip){
 
-    return Response.ok(this.createFactura(facturaService.createFactura(skip,limit))).build();
+    return Response.ok(this.createFactura(facturaService.createFactura(limit,skip))).build();
 
   }
 

@@ -18,8 +18,8 @@ public class ProductsRestImplement implements IProductsRest {
     IProductService productService;
 
     @Override
-    public List<Product> obtenerProducts(int skip, int limit){
-        ResponseDTO products = productService.getProducts(skip, limit);
+    public List<Product> obtenerProducts( int limit , int skip){
+        ResponseDTO products = productService.getProducts( limit , skip);
 
         ArrayList<Product> ProductsList = new ArrayList<>();
         for (ProductDTO p: products.getProducts()){

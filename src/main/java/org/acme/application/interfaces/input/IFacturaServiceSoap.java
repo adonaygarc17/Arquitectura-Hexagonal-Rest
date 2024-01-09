@@ -6,5 +6,5 @@ import org.acme.domain.entities.Factura;
 
 public interface IFacturaServiceSoap {
     @ProductRangeValidate
-    Factura createFactura(int skip, int limit) throws JsonProcessingException_Exception;
+    Factura createFactura( int limit, int skip) throws JsonProcessingException_Exception;
 }

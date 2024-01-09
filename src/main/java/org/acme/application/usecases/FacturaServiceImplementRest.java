@@ -14,7 +14,7 @@ public class FacturaServiceImplementRest implements IFacturaServiceRest {
 
 
     @Override
-    public Factura createFactura (int skip, int limit){
-        return new Factura(iProductsRest.obtenerProducts(skip, limit));
+    public Factura createFactura (int limit, int skip){
+        return new Factura(iProductsRest.obtenerProducts(limit, skip));
     }
 }

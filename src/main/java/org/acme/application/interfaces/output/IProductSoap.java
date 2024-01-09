@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface IProductSoap {
 
-    List<Product> obtenerProducts(int skip, int limit) throws JsonProcessingException_Exception;
+    List<Product> obtenerProducts(int limit, int skip) throws JsonProcessingException_Exception;
 
 }

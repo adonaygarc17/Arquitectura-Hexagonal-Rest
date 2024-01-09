@@ -19,8 +19,8 @@ public class ProductSoapImplement implements IProductSoap {
     ISoapAdapter soapAdapter;
 
     @Override
-    public List<Product> obtenerProducts(int arg1, int arg0) throws JsonProcessingException_Exception {
-        CustomRestResponseDTO pro = soapAdapter.getProducts(arg1, arg0);
+    public List<Product> obtenerProducts(int arg0, int arg1 ) throws JsonProcessingException_Exception {
+        CustomRestResponseDTO pro = soapAdapter.getProducts(arg0, arg1);
 
         ArrayList<Product> ProductsList = new ArrayList<>();
 

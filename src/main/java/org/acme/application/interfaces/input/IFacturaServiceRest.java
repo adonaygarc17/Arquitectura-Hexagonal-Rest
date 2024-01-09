@@ -7,5 +7,5 @@ import org.acme.domain.entities.Factura;
 public interface IFacturaServiceRest {
 
    @ProductRangeValidate
-   Factura createFactura(int skip, int limit);
+   Factura createFactura(int limit, int skip);
 }
