@@ -2,14 +2,19 @@ package org.acme.infraestructure.input.rest.dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 
 @JsonPropertyOrder({"products",  "totalDiscount","facturaTax","facturaSubtotal","total"})
-public class FacturaDTO {
 
-    private List<FacturaProductDTO> products;
+public class FacturaDTO{
+
+    private List<FacturaProductDTO> products = new ArrayList<>();
     private double facturaSubtotal;
     private double totalDiscount;
     private double facturaTax;
@@ -21,6 +26,10 @@ public class FacturaDTO {
         this.totalDiscount = totalDiscount;
         this.facturaTax = facturaTax;
         this.total = total;
+    }
+
+    public FacturaDTO() {
+
     }
 
     @JsonProperty("facturaSubtotal")
@@ -40,7 +49,7 @@ public class FacturaDTO {
 
 
     @JsonProperty("productos")
-    public List<FacturaProductDTO> getProducts() {
+    public  List<FacturaProductDTO> getProducts() {
         return products;
     }
 

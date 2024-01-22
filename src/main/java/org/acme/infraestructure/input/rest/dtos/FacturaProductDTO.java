@@ -3,9 +3,13 @@ package org.acme.infraestructure.input.rest.dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
 
 @JsonPropertyOrder({"id","title","description","price","discountPercentage", "stock", "brand","category", "thumbnail" })
 public class FacturaProductDTO {
+
     private int id;
     private String title;
     private String category;
@@ -27,6 +31,10 @@ public class FacturaProductDTO {
         this.discountPercentage = discountPercentage;
         this.discountAmount = discountAmount;
         this.finalPrice = finalPrice;
+    }
+
+    public FacturaProductDTO() {
+
     }
 
     @JsonProperty("precio")

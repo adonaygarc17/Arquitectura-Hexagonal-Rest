@@ -1,7 +1,7 @@
 package org.acme.infraestructure.input.rest.dtos;
 
 
-public class ProductDTO {
+public class ProductDTO{
     public int id;
 
     public String title;
@@ -10,15 +10,24 @@ public class ProductDTO {
 
     public String thumbnail;
 
-    public int discountPercentage;
+    public double discountPercentage;
 
     public int stock;
 
     public String brand;
 
-    public int price;
+    public double price;
 
-
+    public ProductDTO(int id, String title, String category, String thumbnail, double discountPercentage, int stock, String brand, double price) {
+        this.id = id;
+        this.title = title;
+        this.category = category;
+        this.thumbnail = thumbnail;
+        this.discountPercentage = discountPercentage;
+        this.stock = stock;
+        this.brand = brand;
+        this.price = price;
+    }
 
     public int getId() {
         return id;
@@ -52,11 +61,11 @@ public class ProductDTO {
         this.thumbnail = thumbnail;
     }
 
-    public int getDiscountPercentage() {
+    public double getDiscountPercentage() {
         return discountPercentage;
     }
 
-    public void setDiscountPercentage(int discountPercentage) {
+    public void setDiscountPercentage(double discountPercentage) {
         this.discountPercentage = discountPercentage;
     }
 
@@ -76,11 +85,11 @@ public class ProductDTO {
         this.brand = brand;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 }

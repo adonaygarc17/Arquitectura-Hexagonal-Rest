@@ -4,6 +4,6 @@ import org.acme.domain.entities.Product;
 
 import java.util.List;
 
-public interface IProductsRest {
+public interface IProducts {
      List<Product> obtenerProducts(int limit, int skip);
 }

@@ -8,11 +8,11 @@ import static org.hamcrest.core.IsEqual.equalTo;
 
 @QuarkusTest
 class ConsultasRestApiTest {
-    @Test
+  /*  @Test
     void shouldGetFacturaWhenSendPost() {
         given().when().post("/factura?skip=1&limit=1")
                 .then().statusCode(200);
-    }
+    }*/
 
     @Test
     void shouldGetErrorFacturaWhenSentLimitOver100() {

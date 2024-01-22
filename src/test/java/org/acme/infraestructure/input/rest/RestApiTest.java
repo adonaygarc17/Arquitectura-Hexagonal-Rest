@@ -4,7 +4,7 @@ import io.quarkus.test.InjectMock;
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.core.Response;
-import org.acme.application.interfaces.input.IFacturaServiceRest;
+import org.acme.application.interfaces.input.IFacturaService;
 import org.acme.domain.entities.Factura;
 import org.acme.domain.entities.Product;
 import org.acme.infraestructure.input.rest.dtos.FacturaDTO;
@@ -20,7 +20,7 @@ import static org.mockito.Mockito.*;
 @QuarkusTest
 class RestApiTest {
     @InjectMock
-    IFacturaServiceRest facturaServiceMock;
+    IFacturaService facturaServiceMock;
 
     @Inject
     RestApi restApi;
