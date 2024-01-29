@@ -1,4 +1,4 @@
-package org.acme.infraestructure.output.Soap;
+package org.acme.infraestructure.output.soap;
 
 import io.quarkiverse.cxf.annotation.CXFClient;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -23,7 +23,7 @@ public class ProductSoapImplement implements IProducts {
     public List<Product> obtenerProducts(int arg0, int arg1 ){
         CustomRestResponseDTO pro = soapAdapter.getProducts(arg0, arg1);
 
-        ArrayList<Product> ProductsList = new ArrayList<>();
+        ArrayList<Product> productsList = new ArrayList<>();
 
         for (ProductDTO p: pro.getProducts().getProduct()){
             Product product = new Product(
@@ -36,9 +36,9 @@ public class ProductSoapImplement implements IProducts {
                     p.getDetails().getBrand(),
                     p.getPrice()
             );
-            ProductsList.add(product);
+            productsList.add(product);
         }
-        return ProductsList;
+        return productsList;
 
     }
 }

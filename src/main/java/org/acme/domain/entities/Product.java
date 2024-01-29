@@ -1,7 +1,6 @@
 package org.acme.domain.entities;
 
 import lombok.Getter;
-import lombok.Setter;
 
 import java.text.DecimalFormat;
 import java.util.Objects;

@@ -2,12 +2,9 @@ package org.acme.infraestructure.input.rest.dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
-import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 
 @JsonPropertyOrder({"products",  "totalDiscount","facturaTax","facturaSubtotal","total"})

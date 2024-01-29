@@ -1,17 +1,15 @@
 package org.acme.infraestructure.input.rest;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import io.smallrye.common.constraint.NotNull;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
+import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import org.acme.application.interfaces.input.IFacturaService;
-import org.acme.infraestructure.output.DB.DTO.FacturaDb;
-import org.acme.infraestructure.output.DB.DTO.ProductDb;
-import org.acme.infraestructure.output.DB.FacturaRepository;
-import org.acme.infraestructure.output.DB.StoredProcedureRepository;
+import org.acme.application.interfaces.input.*;
+import org.acme.infraestructure.output.db.dto.FacturaDb;
+import org.acme.infraestructure.output.db.StoredProcedureRepository;
 import org.acme.utils.exceptions.dtos.ErrorResponse;
 import org.acme.domain.entities.Factura;
 import org.acme.domain.entities.Product;
@@ -26,12 +24,6 @@ import java.util.List;
 import java.util.UUID;
 
 
-@APIResponse(
-        description = "Muestra factura con los descuentos, impuesto y el total",
-        responseCode = "200",
-        content = @Content(mediaType = "application/json",
-                schema = @Schema(implementation = FacturaDTO.class))
-)
 
 
 @APIResponse
@@ -63,65 +55,90 @@ public class RestApi {
   StoredProcedureRepository storedProcedureRepository;
 
   @Inject
-  FacturaRepository facturaRepository;
+  IDeleteFacturaById IDeleteFacturaById;
 
+  @Inject
+  ISearchFacturaByValue ISearchFacturaByValue;
+
+  @Inject
+  IUpdateFacturaDb IUpdateFacturaDb;
+
+  @Inject
+  ISearchFacturaById ISearchFacturaById;
+  @APIResponse(
+          description = "Crea y almacena la factura en la base de datos",
+          responseCode = "200",
+          content = @Content(mediaType = "application/json",
+                  schema = @Schema(implementation = FacturaDTO.class))
+  )
   @POST
   @Produces(MediaType.APPLICATION_JSON)
   public Response getFactura( @NotNull @QueryParam("limit") int limit, @NotNull @QueryParam("skip") int skip){
     return Response.ok(this.createFactura(facturaService.createFactura(limit,skip))).build();
 
   }
-
+  @APIResponse(
+          description = "Muestra factura con los descuentos, impuesto y el total",
+          responseCode = "200",
+          content = @Content(mediaType = "application/json",
+                  schema = @Schema(implementation = FacturaDTO.class))
+  )
   @GET
   @Produces(MediaType.APPLICATION_JSON)
   public Response getAllFacturas(){
     return Response.status(200).entity(storedProcedureRepository.getAllFactura()).build();
   }
-
+  @APIResponse(
+          description = "Muestra factura con los descuentos, impuesto y el total",
+          responseCode = "200",
+          content = @Content(mediaType = "application/json",
+                  schema = @Schema(implementation = FacturaDTO.class))
+  )
   @GET
   @Produces(MediaType.APPLICATION_JSON)
   @Path("/{id}")
-  public PanacheEntityBase getFacturaById(@QueryParam("id") UUID id){
-    return FacturaDb.findById(id);
+  public Response getFacturaById(@PathParam("id") UUID id){
+    return Response.status(200).entity(ISearchFacturaById.searchFacturaById(id)).build();
   }
+  @APIResponse(
+          description = "Muestra factura con los descuentos, impuesto y el total",
+          responseCode = "200",
+          content = @Content(mediaType = "application/json",
+                  schema = @Schema(implementation = FacturaDTO.class))
+  )
+  @GET
+  @Path("/{value}")
+  @Produces(MediaType.APPLICATION_JSON)
+  public List<FacturaDb> getFacturaByTotal(@PositiveOrZero @QueryParam("total") double total,@PositiveOrZero @QueryParam("discount") double totalDiscount){
+      return ISearchFacturaByValue.getFacturaByValue(total,totalDiscount);
 
+  }
+  @APIResponse(
+          description = "Actualiza la factura con nuevos productos",
+          responseCode = "200",
+          content = @Content(mediaType = "application/json",
+                  schema = @Schema(implementation = FacturaDTO.class))
+  )
   @PUT
   @Produces(MediaType.APPLICATION_JSON)
   @Path("/{id}")
   public Response updateProducts(@QueryParam("id") UUID id,@QueryParam("limit") int limit, @QueryParam("skip")int skip){
-    FacturaDb updateFactura = FacturaDb.findById(id);
-
-    if(updateFactura == null){
-      throw new NotFoundException();
-    }
-    ProductDb.delete("facturaDb",updateFactura);
-    Factura newProduct = facturaService.generarFactura(limit, skip);
-    updateFactura.setId(id);
-    updateFactura.setFacturaSubtotal(newProduct.getFacturaSubTotal());
-    updateFactura.setFacturaTax(newProduct.getFacturaTax());
-    updateFactura.setTotalDiscount(newProduct.getTotalDiscount());
-    updateFactura.setTotal(newProduct.getTotal());
-    updateFactura.setProducts(mappingProducts(newProduct.getProducts(),updateFactura));
-    updateFactura.persist();
-    return Response.status(200).entity(updateFactura ).build();
-
+      return Response.status(200).entity(IUpdateFacturaDb.updateFactura(id,limit,skip)).build();
   }
-  public List<ProductDb> mappingProducts(List<Product> products, FacturaDb factura){
-    ArrayList<ProductDb> dbProducts = new ArrayList<>();
-    for (Product p : products) {
-      ProductDb dbProduct = new ProductDb();
-      dbProduct.setTitle(p.getTitle());
-      dbProduct.setCategory(p.getCategory());
-      dbProduct.setBrand(p.getBrand());
-      dbProduct.setThumbnail(p.getThumbnail());
-      dbProduct.setDiscountPercentage(p.getDiscountPercentage());
-      dbProduct.setDiscountTotal(p.getDiscountTotal());
-      dbProduct.setFinalPrice(p.getFinalPrice());
-      dbProduct.setFacturaDb(factura);
-      dbProducts.add(dbProduct);
-    }
-    return  dbProducts;
+  @APIResponse(
+          description = "Elimina la factura segun el id",
+          responseCode = "200",
+          content = @Content(mediaType = "application/json",
+                  schema = @Schema(implementation = FacturaDTO.class))
+  )
+  @DELETE
+  @Path("/{id}")
+  @Produces(MediaType.APPLICATION_JSON)
+  public Response deleteFactura(@PathParam("id") UUID id){
+
+    return Response.status(200).entity(IDeleteFacturaById.deleteFacturaById(id)).build();
   }
+
 
   public FacturaDTO createFactura(Factura factura) {
     ArrayList<FacturaProductDTO> productsDTO = new ArrayList<>();
@@ -146,26 +163,5 @@ public class RestApi {
             factura.getFacturaTax(),
             factura.getTotal());
   }
-
-  @DELETE
-  @Path("/{id}")
-  @Produces(MediaType.APPLICATION_JSON)
-  public void deleteFactura(@PathParam("id") UUID id){
-    facturaRepository.deleteById(id);
- }
-
-  @GET
-  @Path("{value}")
-  @Produces(MediaType.APPLICATION_JSON)
-  public List<FacturaDb> getFacturaByTotal(@QueryParam("total") double total, @QueryParam("discount") double totalDiscount){
-    if(total >0 || totalDiscount >0){
-      return facturaRepository.list("total =?1 OR totalDiscount = ?2",total, totalDiscount);
-    }else {
-      throw new NotFoundException("La factura no fue encontrada");
-    }
-
- }
-
-
 
 }

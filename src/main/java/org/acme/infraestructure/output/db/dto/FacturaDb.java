@@ -1,11 +1,10 @@
-package org.acme.infraestructure.output.DB.DTO;
+package org.acme.infraestructure.output.db.dto;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.annotations.Type;
 
 import java.sql.Types;
 import java.util.ArrayList;
@@ -26,8 +25,7 @@ public class FacturaDb extends PanacheEntityBase {
     public double totalDiscount;
     public double facturaTax;
     public double total;
-    @OneToMany(cascade= CascadeType.ALL, mappedBy = "facturaDb",fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "facturaDb",fetch = FetchType.EAGER)
     public List<ProductDb> products = new ArrayList<>();
-
 
 }

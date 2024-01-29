@@ -3,8 +3,6 @@ package org.acme.infraestructure.input.rest.dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 
 
 @JsonPropertyOrder({"id","title","description","price","discountPercentage", "stock", "brand","category", "thumbnail" })

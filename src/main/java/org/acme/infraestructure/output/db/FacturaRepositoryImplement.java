@@ -1,30 +1,59 @@
-package org.acme.infraestructure.output.DB;
+package org.acme.infraestructure.output.db;
 
-import jakarta.ejb.ApplicationException;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.ParameterMode;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.StoredProcedureQuery;
 import jakarta.transaction.Transactional;
-import org.acme.infraestructure.output.DB.DTO.FacturaDb;
-import org.acme.infraestructure.output.DB.DTO.FacturaDbDTO;
-import org.acme.infraestructure.output.DB.DTO.ProductDb;
-import org.acme.infraestructure.output.DB.DTO.ProductDbDTO;
+import org.acme.application.interfaces.output.IFacturaRepository;
+import org.acme.domain.entities.Factura;
+import org.acme.domain.entities.Product;
+import org.acme.infraestructure.output.db.dto.FacturaDb;
+import org.acme.infraestructure.output.db.dto.ProductDb;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @ApplicationScoped
-public class StoredProcedureRepository {
+public class FacturaRepositoryImplement implements IFacturaRepository {
 
     @PersistenceContext
     private EntityManager entityManager;
 
+    @Override
+    public void saveFactura(Factura factura) {
+        FacturaDb facturaDb = new FacturaDb();
+        facturaDb.setId(UUID.randomUUID());
+        facturaDb.setFacturaTax((float)factura.getFacturaTax());
+        facturaDb.setFacturaSubtotal((float)factura.getFacturaSubTotal());
+        facturaDb.setTotalDiscount((float)factura.getTotalDiscount());
+        facturaDb.setTotal((float)factura.getTotal());
+        facturaDb.setProducts(mappingProducts(factura.getProducts(),facturaDb));
+        savedFactura(facturaDb);
+    }
+    public List<ProductDb> mappingProducts(List<Product> products, FacturaDb factura){
+        ArrayList<ProductDb> dbProducts = new ArrayList<>();
+        for (Product p : products) {
+            ProductDb dbProduct = new ProductDb();
+            dbProduct.setTitle(p.getTitle());
+            dbProduct.setCategory(p.getCategory());
+            dbProduct.setBrand(p.getBrand());
+            dbProduct.setThumbnail(p.getThumbnail());
+            dbProduct.setDiscountPercentage(p.getDiscountPercentage());
+            dbProduct.setDiscountTotal(p.getDiscountTotal());
+            dbProduct.setFinalPrice(p.getFinalPrice());
+            dbProduct.setFacturaDb(factura);
+            dbProducts.add(dbProduct);
+        }
+        return  dbProducts;
+    }
+
     @Transactional
     public void savedFactura(FacturaDb facturaDb){
         StoredProcedureQuery saveFacturaQuery = entityManager.createStoredProcedureQuery("saveBill",FacturaDb.class)
-                .registerStoredProcedureParameter(1,float.class,ParameterMode.IN)
+                .registerStoredProcedureParameter(1,float.class, ParameterMode.IN)
                 .registerStoredProcedureParameter(2, float.class, ParameterMode.IN)
                 .registerStoredProcedureParameter(3,float.class, ParameterMode.IN)
                 .registerStoredProcedureParameter(4,float.class,ParameterMode.IN)
@@ -58,45 +87,4 @@ public class StoredProcedureRepository {
         }
     }
 
-    @Transactional
-    public ArrayList<FacturaDbDTO> getAllFactura(){
-        StoredProcedureQuery facturaQuery = entityManager.createStoredProcedureQuery("GetAllBills")
-                .registerStoredProcedureParameter(1, Class.class, ParameterMode.REF_CURSOR);
-        List<Object[]>facturaRows = facturaQuery.getResultList();
-
-        StoredProcedureQuery productsQuery = entityManager.createStoredProcedureQuery("GetAllProducts")
-                .registerStoredProcedureParameter(1, Class.class, ParameterMode.REF_CURSOR);
-        List<Object[]> productsRows = productsQuery.getResultList();
-
-        ArrayList<FacturaDbDTO> dbBillDTOS = new ArrayList<>(facturaRows.size());
-        for (Object[] b : facturaRows) {
-            FacturaDbDTO billDto = new FacturaDbDTO(
-                    (double) b[0],
-                    (double) b[1],
-                    (double) b[2],
-                    (double) b[3],
-                    mappingDbProducts(productsRows).stream().filter(dbProductsDTO -> dbProductsDTO.dbBillId().equals(b[4])).toList()
-            );
-            dbBillDTOS.add(billDto);
-        }
-        return dbBillDTOS;
-    }
-    private List<ProductDbDTO> mappingDbProducts(List<Object[]> productsRows) {
-        List<ProductDbDTO> dbProductsDTOAList = new ArrayList<>();
-        for (Object[] p: productsRows) {
-            ProductDbDTO dbProductsDTO = new ProductDbDTO(
-                    (String) p[0],
-                    (String) p[1],
-                    (String) p[2],
-                    (String) p[3],
-                    (String) p[4],
-                    (double) p[5],
-                    (double) p[6],
-                    (double) p[7]
-
-            );
-            dbProductsDTOAList.add(dbProductsDTO);
-        }
-        return dbProductsDTOAList;
-    }
 }

@@ -1,4 +1,4 @@
-package org.acme.infraestructure.output.DB.DTO;
+package org.acme.infraestructure.output.db.dto;
 
 
 public record ProductDbDTO(String dbBillId,

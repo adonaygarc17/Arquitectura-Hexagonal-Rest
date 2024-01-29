@@ -2,7 +2,6 @@ package org.acme.application.usecases;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import jakarta.persistence.PersistenceContext;
 import org.acme.application.interfaces.input.IFacturaService;
 import org.acme.application.interfaces.output.IFacturaRepository;
 import org.acme.application.interfaces.output.IProducts;
