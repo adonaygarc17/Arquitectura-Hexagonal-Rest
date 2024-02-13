@@ -41,9 +41,9 @@ public class FacturaRepositoryImplement implements IFacturaRepository {
             dbProduct.setCategory(p.getCategory());
             dbProduct.setBrand(p.getBrand());
             dbProduct.setThumbnail(p.getThumbnail());
-            dbProduct.setDiscountPercentage(p.getDiscountPercentage());
-            dbProduct.setDiscountTotal(p.getDiscountTotal());
-            dbProduct.setFinalPrice(p.getFinalPrice());
+            dbProduct.setDiscountPercentage((float) p.getDiscountPercentage());
+            dbProduct.setDiscountTotal((float) p.getDiscountTotal());
+            dbProduct.setFinalPrice((float) p.getFinalPrice());
             dbProduct.setFacturaDb(factura);
             dbProducts.add(dbProduct);
         }

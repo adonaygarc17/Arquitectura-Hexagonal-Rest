@@ -20,11 +20,16 @@ public class FacturaDb extends PanacheEntityBase {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @JdbcTypeCode(Types.VARCHAR)
+    @Column(name = "id")
     public UUID id;
-    public double facturaSubtotal;
-    public double totalDiscount;
-    public double facturaTax;
-    public double total;
+    @Column(name = "facturasubtotal")
+    public float facturaSubtotal;
+    @Column(name = "totaldiscount")
+    public float totalDiscount;
+    @Column(name = "facturatax")
+    public float facturaTax;
+    @Column(name = "total")
+    public float total;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "facturaDb",fetch = FetchType.EAGER)
     public List<ProductDb> products = new ArrayList<>();
 

@@ -13,14 +13,22 @@ import lombok.Setter;
 public class ProductDb extends PanacheEntityBase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     public Long id;
+    @Column(name = "title")
     public String title;
+    @Column(name = "category")
     public  String category;
+    @Column(name = "brand")
     public String brand;
+    @Column(name = "thumbnail")
     public String thumbnail;
-    public double discountPercentage;
-    public  double discountTotal;
-    public double finalPrice;
+    @Column(name = "discountpercentage")
+    public float discountPercentage;
+    @Column(name = "discounttotal")
+    public  float discountTotal;
+    @Column(name = "finalprice")
+    public float finalPrice;
     @ManyToOne
     @JoinColumn(name = "facturaDb_id")
     @JsonIgnore

@@ -21,7 +21,7 @@ import java.util.List;
 @QuarkusTest
 class FacturaServiceImplementTest {
 
-   /* @InjectMock
+    @InjectMock
     IProducts iProductsMock;
 
     @Inject
@@ -36,10 +36,10 @@ class FacturaServiceImplementTest {
 
         Mockito.when(iProductsMock.obtenerProducts(anyInt(),anyInt())).thenReturn(productosSimulados);
 
-        Factura factura = iFacturaService.createFactura(1,1);
+        Factura factura = iFacturaService.generarFactura(1,1);
 
         verify(iProductsMock, times(1)).obtenerProducts(1,1);
 
         assertEquals(productosSimulados,factura.getProducts());
-    }*/
+    }
 }

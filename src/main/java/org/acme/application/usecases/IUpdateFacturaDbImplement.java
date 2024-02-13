@@ -30,10 +30,10 @@ public class IUpdateFacturaDbImplement implements IUpdateFacturaDb {
         ProductDb.delete("facturaDb",updateFactura);
         Factura newProduct = facturaService.generarFactura(limit, skip);
         updateFactura.setId(id);
-        updateFactura.setFacturaSubtotal(newProduct.getFacturaSubTotal());
-        updateFactura.setFacturaTax(newProduct.getFacturaTax());
-        updateFactura.setTotalDiscount(newProduct.getTotalDiscount());
-        updateFactura.setTotal(newProduct.getTotal());
+        updateFactura.setFacturaSubtotal((float) newProduct.getFacturaSubTotal());
+        updateFactura.setFacturaTax((float) newProduct.getFacturaTax());
+        updateFactura.setTotalDiscount((float) newProduct.getTotalDiscount());
+        updateFactura.setTotal((float) newProduct.getTotal());
         updateFactura.setProducts(mappingProductsDb(newProduct.getProducts(),updateFactura));
         updateFactura.persist();
         return updateFactura;
@@ -47,9 +47,9 @@ public class IUpdateFacturaDbImplement implements IUpdateFacturaDb {
             dbProduct.setCategory(p.getCategory());
             dbProduct.setBrand(p.getBrand());
             dbProduct.setThumbnail(p.getThumbnail());
-            dbProduct.setDiscountPercentage(p.getDiscountPercentage());
-            dbProduct.setDiscountTotal(p.getDiscountTotal());
-            dbProduct.setFinalPrice(p.getFinalPrice());
+            dbProduct.setDiscountPercentage((float) p.getDiscountPercentage());
+            dbProduct.setDiscountTotal((float) p.getDiscountTotal());
+            dbProduct.setFinalPrice((float) p.getFinalPrice());
             dbProduct.setFacturaDb(factura);
             dbProducts.add(dbProduct);
         }

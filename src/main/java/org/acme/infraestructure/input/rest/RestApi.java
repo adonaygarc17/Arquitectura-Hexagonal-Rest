@@ -10,6 +10,7 @@ import jakarta.ws.rs.core.Response;
 import org.acme.application.interfaces.input.*;
 import org.acme.infraestructure.output.db.dto.FacturaDb;
 import org.acme.infraestructure.output.db.StoredProcedureRepository;
+import org.acme.infraestructure.output.db.dto.FacturaDbDTO;
 import org.acme.utils.exceptions.dtos.ErrorResponse;
 import org.acme.domain.entities.Factura;
 import org.acme.domain.entities.Product;
@@ -85,8 +86,8 @@ public class RestApi {
   )
   @GET
   @Produces(MediaType.APPLICATION_JSON)
-  public Response getAllFacturas(){
-    return Response.status(200).entity(storedProcedureRepository.getAllFactura()).build();
+  public ArrayList<FacturaDbDTO> getAllFacturas(){
+    return storedProcedureRepository.getAllFactura();
   }
   @APIResponse(
           description = "Muestra factura con los descuentos, impuesto y el total",
@@ -95,8 +96,8 @@ public class RestApi {
                   schema = @Schema(implementation = FacturaDTO.class))
   )
   @GET
-  @Produces(MediaType.APPLICATION_JSON)
   @Path("/{id}")
+  @Produces(MediaType.APPLICATION_JSON)
   public Response getFacturaById(@PathParam("id") UUID id){
     return Response.status(200).entity(ISearchFacturaById.searchFacturaById(id)).build();
   }
@@ -107,7 +108,7 @@ public class RestApi {
                   schema = @Schema(implementation = FacturaDTO.class))
   )
   @GET
-  @Path("/{value}")
+  @Path("/search")
   @Produces(MediaType.APPLICATION_JSON)
   public List<FacturaDb> getFacturaByTotal(@PositiveOrZero @QueryParam("total") double total,@PositiveOrZero @QueryParam("discount") double totalDiscount){
       return ISearchFacturaByValue.getFacturaByValue(total,totalDiscount);
@@ -122,9 +123,10 @@ public class RestApi {
   @PUT
   @Produces(MediaType.APPLICATION_JSON)
   @Path("/{id}")
-  public Response updateProducts(@QueryParam("id") UUID id,@QueryParam("limit") int limit, @QueryParam("skip")int skip){
+  public Response updateProducts(@PathParam("id") UUID id,@QueryParam("limit") int limit, @QueryParam("skip")int skip){
       return Response.status(200).entity(IUpdateFacturaDb.updateFactura(id,limit,skip)).build();
   }
+
   @APIResponse(
           description = "Elimina la factura segun el id",
           responseCode = "200",
