@@ -44,8 +44,7 @@ class RestApiTest {
     @Test
     void shouldCreateFacturaWhenRecivedProductList() {
         //Crear listado de productos
-        List<Product> productosSimulados = Arrays.asList(new Product(2, "iPhonex", "smartphones", "https://i.dummyjson.com/data/products/2/thumbnail.jpg",17,34,
-                "Apple",899.0));
+        List<Product> productosSimulados = Arrays.asList(new Product(2, "iPhonex", "smartphones", "https://i.dummyjson.com/data/products/2/thumbnail.jpg",17,34,"Apple",899.0));
 
         Factura facturaSimulada = new Factura(productosSimulados);
 

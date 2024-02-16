@@ -28,7 +28,7 @@ class FacturaServiceImplementTest {
     IFacturaService iFacturaService;
 
     @Test
-    void createFactura() {
+    void generateFactura() {
 
         //Crear listado de productos
         List<Product> productosSimulados = Arrays.asList(new Product(2, "iPhonex", "smartphones", "https://i.dummyjson.com/data/products/2/thumbnail.jpg",17,34,

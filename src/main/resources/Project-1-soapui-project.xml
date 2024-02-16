@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="65328740-8d78-437a-9aa0-45f5ba6af213" activeEnvironment="Default" name="Project 1" resourceRoot="" soapui-version="5.7.2" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="2b7a8e19-1504-4fc6-895f-9cc16bd0b66d" wsaVersion="NONE" name="ProductsSoapBinding" type="wsdl" bindingName="{http://adapter.gbm.net/}ProductsSoapBinding" soapVersion="1_1" anonymous="optional" definition="file:/C:/Quarkus/ticket-v2/src/main/resources/wsdl/Products.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/C:/Quarkus/ticket-v2/src/main/resources/wsdl/Products.wsdl"><con:part><con:url>file:/C:/Quarkus/ticket-v2/src/main/resources/wsdl/Products.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="Products" targetNamespace="http://adapter.gbm.net/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://adapter.gbm.net/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://adapter.gbm.net/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="customRestResponseDTO" type="tns:customRestResponseDTO"/>
+      <xs:element name="getProducts" type="tns:getProducts"/>
+      <xs:element name="getProductsResponse" type="tns:getProductsResponse"/>
+      <xs:complexType name="getProducts">
+        <xs:sequence>
+          <xs:element name="arg0" type="xs:int"/>
+          <xs:element name="arg1" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getProductsResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:customRestResponseDTO"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="customRestResponseDTO">
+        <xs:sequence>
+          <xs:element form="qualified" minOccurs="0" name="products">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="product" type="tns:productDTO"/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element form="qualified" name="total" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="productDTO">
+        <xs:sequence>
+          <xs:element form="qualified" minOccurs="0" name="details" type="tns:productDetailsDTO"/>
+          <xs:element form="qualified" name="discountPercentage" type="xs:double"/>
+          <xs:element form="qualified" name="id" type="xs:int"/>
+          <xs:element form="qualified" minOccurs="0" name="images">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="image" type="xs:string"/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element form="qualified" name="price" type="xs:double"/>
+          <xs:element form="qualified" name="rating" type="xs:double"/>
+          <xs:element form="qualified" minOccurs="0" name="stock" type="tns:productStockDTO"/>
+          <xs:element form="qualified" minOccurs="0" name="thumbnail" type="xs:string"/>
+          <xs:element form="qualified" minOccurs="0" name="title" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="productDetailsDTO">
+        <xs:sequence>
+          <xs:element form="qualified" minOccurs="0" name="brand" type="xs:string"/>
+          <xs:element form="qualified" minOccurs="0" name="category" type="xs:string"/>
+          <xs:element form="qualified" minOccurs="0" name="description" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="productStockDTO">
+        <xs:sequence>
+          <xs:element form="qualified" name="quantity" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="jsonLocation">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:element name="JsonProcessingException" type="tns:JsonProcessingException"/>
+      <xs:complexType name="JsonProcessingException">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="originalMessage" type="xs:string"/>
+          <xs:element minOccurs="0" name="message" type="xs:string"/>
+          <xs:element minOccurs="0" name="location" type="tns:jsonLocation"/>
+          <xs:element minOccurs="0" name="processor" type="xs:anyType"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getProductsResponse">
+    <wsdl:part element="tns:getProductsResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="JsonProcessingException">
+    <wsdl:part element="tns:JsonProcessingException" name="JsonProcessingException"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getProducts">
+    <wsdl:part element="tns:getProducts" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ISoapAdapter">
+    <wsdl:operation name="getProducts">
+      <wsdl:input message="tns:getProducts" name="getProducts"></wsdl:input>
+      <wsdl:output message="tns:getProductsResponse" name="getProductsResponse"></wsdl:output>
+      <wsdl:fault message="tns:JsonProcessingException" name="JsonProcessingException"></wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ProductsSoapBinding" type="tns:ISoapAdapter">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getProducts">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getProducts">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getProductsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="JsonProcessingException">
+        <soap:fault name="JsonProcessingException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Products">
+    <wsdl:port binding="tns:ProductsSoapBinding" name="ISoapAdapterPort">
+      <soap:address location="http://localhost:8888/gbm-labs/products"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://T14-ERGARCIA:8088/mockProducts</con:endpoint><con:endpoint>http://T14-ERGARCIA:8088/mockProductsSoapBinding</con:endpoint><con:endpoint>http://localhost:8888/gbm-labs/products</con:endpoint></con:endpoints><con:operation id="09fb395d-b54a-48e2-8aab-560da7931767" isOneWay="false" action="" name="getProducts" bindingOperationName="getProducts" type="Request-Response" outputName="getProductsResponse" inputName="getProducts" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="8172783a-c6c1-4542-9dd0-6538a9793b7d" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8088/mockProducts</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:adap="http://adapter.gbm.net/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <adap:getProducts>
+         <arg0>1</arg0>
+         <arg1>0</arg1>
+      </adap:getProducts>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://adapter.gbm.net/ISoapAdapter/getProducts"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite id="76488630-9563-4931-bb04-91a6c50b8060" name="ProductsSoapBinding TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="9cacb23b-494a-4fa3-9301-be8af26d6652" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getProducts TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="775c37a4-0918-4d84-8960-b3772ceb6522" name="getProducts"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>ProductsSoapBinding</con:interface><con:operation>getProducts</con:operation><con:request name="getProducts" id="677daf61-e933-4151-a4a8-3969c9deb0d7"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://T14-ERGARCIA:8088/mockProducts</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:adap="http://adapter.gbm.net/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <adap:getProducts>\r
+         <arg0>1</arg0>\r
+         <arg1>0</arg1>\r
+      </adap:getProducts>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="http://adapter.gbm.net/ISoapAdapter/getProducts" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="b45ef951-8ba5-41ae-89b0-d06f9fa90f6e" name="getProducts - Request 1"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>ProductsSoapBinding</con:interface><con:operation>getProducts</con:operation><con:request name="getProducts - Request 1" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="23274a93-4b24-4572-8a77-31524db48ee8"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8088/mockProducts</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:adap="http://adapter.gbm.net/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <adap:getProducts>
+         <arg0>4</arg0>
+         <arg1>3</arg1>
+      </adap:getProducts>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="a85c4e21-3184-4a98-900d-08efdb13a065" name="SOAP Response"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://adapter.gbm.net/ISoapAdapter/getProducts"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:mockService id="5e75262b-c106-490a-bdd4-8245376670e2" port="8088" path="/mockProducts" host="T14-ERGARCIA" name="ProductsSoapMockService"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:mockOperation name="getProducts" id="703f51f5-9afb-469b-8bec-89f8254f8710" interface="ProductsSoapBinding" operation="getProducts"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>RANDOM</con:dispatchStyle><con:response name="Response 1" id="8d1faed6-7ec3-4b08-b6e6-6452a61e23bd" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:adap="http://adapter.gbm.net/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <adap:getProductsResponse>
+         <!--Optional:-->
+         <return>
+            <!--Optional:-->
+            <adap:products>
+               <!--Zero or more repetitions:-->
+               <adap:product>
+                  <!--Optional:-->
+                  <adap:details>
+                     <!--Optional:-->
+                     <adap:brand>Apple</adap:brand>
+                     <!--Optional:-->
+                     <adap:category>smartphones</adap:category>
+                     <!--Optional:-->
+                     <adap:description>An apple mobile which is nothing like apple</adap:description>
+                  </adap:details>
+                  <adap:discountPercentage>12.96</adap:discountPercentage>
+                  <adap:id>1</adap:id>
+                  <!--Optional:-->
+                  <adap:images>
+                     <!--Zero or more repetitions:-->
+                     <adap:image>https://i.dummyjson.com/data/products/1/1.jpg</adap:image>
+                  </adap:images>
+                  <adap:price>549.0</adap:price>
+                  <adap:rating>?</adap:rating>
+                  <!--Optional:-->
+                  <adap:stock>
+                     <adap:quantity>94</adap:quantity>
+                  </adap:stock>
+                  <!--Optional:-->
+                  <adap:thumbnail>https://i.dummyjson.com/data/products/1/thumbnail.jpg</adap:thumbnail>
+                  <!--Optional:-->
+                  <adap:title>iPhone 9</adap:title>
+               </adap:product>
+            </adap:products>
+            <adap:total>549.0</adap:total>
+         </return>
+      </adap:getProductsResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://adapter.gbm.net/ISoapAdapter/getProductsResponse"/></con:response><con:dispatchConfig/></con:mockOperation></con:mockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
