@@ -44,7 +44,7 @@ public class FacturaRepositoryImplement implements IFacturaRepository {
             dbProduct.setDiscountPercentage((float) p.getDiscountPercentage());
             dbProduct.setDiscountTotal((float) p.getDiscountTotal());
             dbProduct.setFinalPrice((float) p.getFinalPrice());
-            dbProduct.setFacturaDb(factura);
+           // dbProduct.setFacturaDb(factura);
             dbProducts.add(dbProduct);
         }
         return  dbProducts;

@@ -1,5 +1,6 @@
 package org.acme.infraestructure.output.db.dto;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -30,7 +31,8 @@ public class FacturaDb extends PanacheEntityBase {
     public float facturaTax;
     @Column(name = "total")
     public float total;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "facturaDb",fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "facturaDb")
+    @JsonManagedReference
     public List<ProductDb> products = new ArrayList<>();
 
 }

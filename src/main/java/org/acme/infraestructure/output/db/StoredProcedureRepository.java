@@ -5,7 +5,9 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.StoredProcedureQuery;
 import jakarta.transaction.Transactional;
+import org.acme.infraestructure.output.db.dto.FacturaDb;
 import org.acme.infraestructure.output.db.dto.FacturaDbDTO;
+import org.acme.infraestructure.output.db.dto.ProductDb;
 import org.acme.infraestructure.output.db.dto.ProductDbDTO;
 
 import java.util.ArrayList;

@@ -1,6 +1,7 @@
 package org.acme.infraestructure.output.db.dto;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.*;
@@ -31,7 +32,7 @@ public class ProductDb extends PanacheEntityBase {
     public float finalPrice;
     @ManyToOne
     @JoinColumn(name = "facturaDb_id")
-    @JsonIgnore
+    @JsonBackReference
     public FacturaDb facturaDb;
 
 }

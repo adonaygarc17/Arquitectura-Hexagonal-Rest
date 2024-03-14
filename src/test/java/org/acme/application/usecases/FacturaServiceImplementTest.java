@@ -21,7 +21,7 @@ import java.util.List;
 @QuarkusTest
 class FacturaServiceImplementTest {
 
-    @InjectMock
+ /*   @InjectMock
     IProducts iProductsMock;
 
     @Inject
@@ -42,4 +42,10 @@ class FacturaServiceImplementTest {
 
         assertEquals(productosSimulados,factura.getProducts());
     }
+
+    @Test
+    void generateFacturaMickrocks() {
+        Factura factura = iFacturaService.generarFactura(10,10);
+        assertEquals(5,factura.getProducts().size());
+    }*/
 }

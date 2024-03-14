@@ -1,5 +1,6 @@
 package org.acme.infraestructure.input.rest;
 
+import io.micrometer.core.instrument.MeterRegistry;
 import io.smallrye.common.constraint.NotNull;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -66,6 +67,10 @@ public class RestApi {
 
   @Inject
   ISearchFacturaById ISearchFacturaById;
+
+  @Inject
+  MeterRegistry registry;
+
   @APIResponse(
           description = "Crea y almacena la factura en la base de datos",
           responseCode = "200",
@@ -75,6 +80,7 @@ public class RestApi {
   @POST
   @Produces(MediaType.APPLICATION_JSON)
   public Response getFactura( @NotNull @QueryParam("limit") int limit, @NotNull @QueryParam("skip") int skip){
+    registry.counter("SaveFacturasCounter").increment();
     return Response.ok(this.createFactura(facturaService.createFactura(limit,skip))).build();
 
   }
@@ -87,8 +93,12 @@ public class RestApi {
   @GET
   @Produces(MediaType.APPLICATION_JSON)
   public ArrayList<FacturaDbDTO> getAllFacturas(){
+
+    registry.counter("getFacturasCounter").increment();
+
     return storedProcedureRepository.getAllFactura();
   }
+
   @APIResponse(
           description = "Muestra factura con los descuentos, impuesto y el total",
           responseCode = "200",

@@ -1,6 +1,6 @@
 package org.acme.infraestructure.output.soap;
 
-import io.quarkiverse.cxf.annotation.CXFClient;
+/*import io.quarkiverse.cxf.annotation.CXFClient;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.SneakyThrows;
 import net.gbm.adapter.ISoapAdapter;
@@ -13,13 +13,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @ApplicationScoped
-public class ProductSoapImplement implements IProducts {
+public class ProductSoapImplement  {
 
     @CXFClient("myProducts")
     ISoapAdapter soapAdapter;
 
     @SneakyThrows
-    @Override
+    //@Override
     public List<Product> obtenerProducts(int arg0, int arg1 ){
         CustomRestResponseDTO pro = soapAdapter.getProducts(arg0, arg1);
 
@@ -42,3 +42,4 @@ public class ProductSoapImplement implements IProducts {
 
     }
 }
+*/

@@ -2,6 +2,7 @@ package org.acme.infraestructure.output.rest;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import org.acme.application.interfaces.output.IProductService;
+import org.acme.application.interfaces.output.IProducts;
 import org.acme.domain.entities.Product;
 import org.acme.infraestructure.input.rest.dtos.ProductDTO;
 import org.acme.infraestructure.input.rest.dtos.ResponseDTO;
@@ -11,12 +12,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @ApplicationScoped
-public class ProductsImplement  {
+public class ProductsRestImplement implements IProducts {
 
     @RestClient
     IProductService productService;
 
-
+    @Override
     public List<Product> obtenerProducts( int limit , int skip){
         ResponseDTO products = productService.getProducts( limit , skip);
 

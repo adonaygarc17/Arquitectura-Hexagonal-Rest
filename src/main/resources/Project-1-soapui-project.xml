@@ -109,11 +109,11 @@
       <soap:address location="http://localhost:8888/gbm-labs/products"/>
     </wsdl:port>
   </wsdl:service>
-</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://T14-ERGARCIA:8088/mockProducts</con:endpoint><con:endpoint>http://T14-ERGARCIA:8088/mockProductsSoapBinding</con:endpoint><con:endpoint>http://localhost:8888/gbm-labs/products</con:endpoint></con:endpoints><con:operation id="09fb395d-b54a-48e2-8aab-560da7931767" isOneWay="false" action="" name="getProducts" bindingOperationName="getProducts" type="Request-Response" outputName="getProductsResponse" inputName="getProducts" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="8172783a-c6c1-4542-9dd0-6538a9793b7d" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8088/mockProducts</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:adap="http://adapter.gbm.net/">
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://T14-ERGARCIA:8088/mockProducts</con:endpoint><con:endpoint>http://T14-ERGARCIA:8088/mockProductsSoapBinding</con:endpoint><con:endpoint>http://localhost:60269/soap/ProductsMockService/1.2</con:endpoint><con:endpoint>http://localhost:8888/gbm-labs/products</con:endpoint></con:endpoints><con:operation id="09fb395d-b54a-48e2-8aab-560da7931767" isOneWay="false" action="" name="getProducts" bindingOperationName="getProducts" type="Request-Response" outputName="getProductsResponse" inputName="getProducts" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="8172783a-c6c1-4542-9dd0-6538a9793b7d" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://T14-ERGARCIA:8088/mockProductsSoapBinding</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:adap="http://adapter.gbm.net/">
    <soapenv:Header/>
    <soapenv:Body>
       <adap:getProducts>
-         <arg0>1</arg0>
+         <arg0>5</arg0>
          <arg1>0</arg1>
       </adap:getProducts>
    </soapenv:Body>
@@ -133,46 +133,122 @@
          <arg1>3</arg1>
       </adap:getProducts>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="a85c4e21-3184-4a98-900d-08efdb13a065" name="SOAP Response"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://adapter.gbm.net/ISoapAdapter/getProducts"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:mockService id="5e75262b-c106-490a-bdd4-8245376670e2" port="8088" path="/mockProducts" host="T14-ERGARCIA" name="ProductsSoapMockService"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:mockOperation name="getProducts" id="703f51f5-9afb-469b-8bec-89f8254f8710" interface="ProductsSoapBinding" operation="getProducts"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>RANDOM</con:dispatchStyle><con:response name="Response 1" id="8d1faed6-7ec3-4b08-b6e6-6452a61e23bd" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:adap="http://adapter.gbm.net/">
-   <soapenv:Header/>
-   <soapenv:Body>
-      <adap:getProductsResponse>
-         <!--Optional:-->
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="a85c4e21-3184-4a98-900d-08efdb13a065" name="SOAP Response"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://adapter.gbm.net/ISoapAdapter/getProducts"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:mockService id="b3a897f9-96fa-4d16-8f1f-ae01f5aff56d" port="8088" path="/mockProductsSoapBinding" host="T14-ERGARCIA" name="ProductsMockService"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties><con:property><con:name>version</con:name><con:value>1.3</con:value></con:property></con:properties><con:mockOperation name="getProducts" id="735517c5-5639-48ad-816b-84dccf87cd02" interface="ProductsSoapBinding" operation="getProducts"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>RANDOM</con:dispatchStyle><con:response name="Response 1" id="ddb05805-5713-4994-ba34-e798686ff16f" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+   <soap:Body>
+      <ns2:getProductsResponse xmlns:ns2="http://adapter.gbm.net/">
          <return>
-            <!--Optional:-->
-            <adap:products>
-               <!--Zero or more repetitions:-->
-               <adap:product>
-                  <!--Optional:-->
-                  <adap:details>
-                     <!--Optional:-->
-                     <adap:brand>Apple</adap:brand>
-                     <!--Optional:-->
-                     <adap:category>smartphones</adap:category>
-                     <!--Optional:-->
-                     <adap:description>An apple mobile which is nothing like apple</adap:description>
-                  </adap:details>
-                  <adap:discountPercentage>12.96</adap:discountPercentage>
-                  <adap:id>1</adap:id>
-                  <!--Optional:-->
-                  <adap:images>
-                     <!--Zero or more repetitions:-->
-                     <adap:image>https://i.dummyjson.com/data/products/1/1.jpg</adap:image>
-                  </adap:images>
-                  <adap:price>549.0</adap:price>
-                  <adap:rating>?</adap:rating>
-                  <!--Optional:-->
-                  <adap:stock>
-                     <adap:quantity>94</adap:quantity>
-                  </adap:stock>
-                  <!--Optional:-->
-                  <adap:thumbnail>https://i.dummyjson.com/data/products/1/thumbnail.jpg</adap:thumbnail>
-                  <!--Optional:-->
-                  <adap:title>iPhone 9</adap:title>
-               </adap:product>
-            </adap:products>
-            <adap:total>549.0</adap:total>
+            <ns2:products>
+               <ns2:product>
+                  <ns2:details>
+                     <ns2:brand>Apple</ns2:brand>
+                     <ns2:category>smartphones</ns2:category>
+                     <ns2:description>An apple mobile which is nothing like apple</ns2:description>
+                  </ns2:details>
+                  <ns2:discountPercentage>12.96</ns2:discountPercentage>
+                  <ns2:id>1</ns2:id>
+                  <ns2:images>
+                     <ns2:image>https://i.dummyjson.com/data/products/1/1.jpg</ns2:image>
+                     <ns2:image>https://i.dummyjson.com/data/products/1/2.jpg</ns2:image>
+                     <ns2:image>https://i.dummyjson.com/data/products/1/3.jpg</ns2:image>
+                     <ns2:image>https://i.dummyjson.com/data/products/1/4.jpg</ns2:image>
+                     <ns2:image>https://i.dummyjson.com/data/products/1/thumbnail.jpg</ns2:image>
+                  </ns2:images>
+                  <ns2:price>549.0</ns2:price>
+                  <ns2:rating>4.69</ns2:rating>
+                  <ns2:stock>
+                     <ns2:quantity>94</ns2:quantity>
+                  </ns2:stock>
+                  <ns2:thumbnail>https://i.dummyjson.com/data/products/1/thumbnail.jpg</ns2:thumbnail>
+                  <ns2:title>iPhone 9</ns2:title>
+               </ns2:product>
+               <ns2:product>
+                  <ns2:details>
+                     <ns2:brand>Apple</ns2:brand>
+                     <ns2:category>smartphones</ns2:category>
+                     <ns2:description>SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...</ns2:description>
+                  </ns2:details>
+                  <ns2:discountPercentage>17.94</ns2:discountPercentage>
+                  <ns2:id>2</ns2:id>
+                  <ns2:images>
+                     <ns2:image>https://i.dummyjson.com/data/products/2/1.jpg</ns2:image>
+                     <ns2:image>https://i.dummyjson.com/data/products/2/2.jpg</ns2:image>
+                     <ns2:image>https://i.dummyjson.com/data/products/2/3.jpg</ns2:image>
+                     <ns2:image>https://i.dummyjson.com/data/products/2/thumbnail.jpg</ns2:image>
+                  </ns2:images>
+                  <ns2:price>899.0</ns2:price>
+                  <ns2:rating>4.44</ns2:rating>
+                  <ns2:stock>
+                     <ns2:quantity>34</ns2:quantity>
+                  </ns2:stock>
+                  <ns2:thumbnail>https://i.dummyjson.com/data/products/2/thumbnail.jpg</ns2:thumbnail>
+                  <ns2:title>iPhone X</ns2:title>
+               </ns2:product>
+               <ns2:product>
+                  <ns2:details>
+                     <ns2:brand>Samsung</ns2:brand>
+                     <ns2:category>smartphones</ns2:category>
+                     <ns2:description>Samsung's new variant which goes beyond Galaxy to the Universe</ns2:description>
+                  </ns2:details>
+                  <ns2:discountPercentage>15.46</ns2:discountPercentage>
+                  <ns2:id>3</ns2:id>
+                  <ns2:images>
+                     <ns2:image>https://i.dummyjson.com/data/products/3/1.jpg</ns2:image>
+                  </ns2:images>
+                  <ns2:price>1249.0</ns2:price>
+                  <ns2:rating>4.09</ns2:rating>
+                  <ns2:stock>
+                     <ns2:quantity>36</ns2:quantity>
+                  </ns2:stock>
+                  <ns2:thumbnail>https://i.dummyjson.com/data/products/3/thumbnail.jpg</ns2:thumbnail>
+                  <ns2:title>Samsung Universe 9</ns2:title>
+               </ns2:product>
+               <ns2:product>
+                  <ns2:details>
+                     <ns2:brand>OPPO</ns2:brand>
+                     <ns2:category>smartphones</ns2:category>
+                     <ns2:description>OPPO F19 is officially announced on April 2021.</ns2:description>
+                  </ns2:details>
+                  <ns2:discountPercentage>17.91</ns2:discountPercentage>
+                  <ns2:id>4</ns2:id>
+                  <ns2:images>
+                     <ns2:image>https://i.dummyjson.com/data/products/4/1.jpg</ns2:image>
+                     <ns2:image>https://i.dummyjson.com/data/products/4/2.jpg</ns2:image>
+                     <ns2:image>https://i.dummyjson.com/data/products/4/3.jpg</ns2:image>
+                     <ns2:image>https://i.dummyjson.com/data/products/4/4.jpg</ns2:image>
+                     <ns2:image>https://i.dummyjson.com/data/products/4/thumbnail.jpg</ns2:image>
+                  </ns2:images>
+                  <ns2:price>280.0</ns2:price>
+                  <ns2:rating>4.3</ns2:rating>
+                  <ns2:stock>
+                     <ns2:quantity>123</ns2:quantity>
+                  </ns2:stock>
+                  <ns2:thumbnail>https://i.dummyjson.com/data/products/4/thumbnail.jpg</ns2:thumbnail>
+                  <ns2:title>OPPOF19</ns2:title>
+               </ns2:product>
+               <ns2:product>
+                  <ns2:details>
+                     <ns2:brand>Huawei</ns2:brand>
+                     <ns2:category>smartphones</ns2:category>
+                     <ns2:description>Huawei’s re-badged P30 Pro New Edition was officially unveiled yesterday in Germany and now the device has made its way to the UK.</ns2:description>
+                  </ns2:details>
+                  <ns2:discountPercentage>10.58</ns2:discountPercentage>
+                  <ns2:id>5</ns2:id>
+                  <ns2:images>
+                     <ns2:image>https://i.dummyjson.com/data/products/5/1.jpg</ns2:image>
+                     <ns2:image>https://i.dummyjson.com/data/products/5/2.jpg</ns2:image>
+                     <ns2:image>https://i.dummyjson.com/data/products/5/3.jpg</ns2:image>
+                  </ns2:images>
+                  <ns2:price>499.0</ns2:price>
+                  <ns2:rating>4.09</ns2:rating>
+                  <ns2:stock>
+                     <ns2:quantity>32</ns2:quantity>
+                  </ns2:stock>
+                  <ns2:thumbnail>https://i.dummyjson.com/data/products/5/thumbnail.jpg</ns2:thumbnail>
+                  <ns2:title>Huawei P30</ns2:title>
+               </ns2:product>
+            </ns2:products>
+            <ns2:total>5</ns2:total>
          </return>
-      </adap:getProductsResponse>
-   </soapenv:Body>
-</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://adapter.gbm.net/ISoapAdapter/getProductsResponse"/></con:response><con:dispatchConfig/></con:mockOperation></con:mockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
+      </ns2:getProductsResponse>
+   </soap:Body>
+</soap:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://adapter.gbm.net/ISoapAdapter/getProductsResponse"/></con:response><con:dispatchConfig/></con:mockOperation></con:mockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
