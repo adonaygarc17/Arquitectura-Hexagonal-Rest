@@ -34,7 +34,7 @@ public class StoredProcedureRepository {
                     (Number) b[4],
                     (Number) b[2],
                     (Number) b[3],
-                    mappingDbProducts(productsRows).stream().filter(dbProductsDTO -> dbProductsDTO.dbBillId().equals(b[1])).toList()
+                    mappingDbProducts(productsRows).stream().filter(dbProductsDTO -> dbProductsDTO.dbBillId().equals(b[0])).toList()
             );
             dbBillDTOS.add(billDto);
         }
