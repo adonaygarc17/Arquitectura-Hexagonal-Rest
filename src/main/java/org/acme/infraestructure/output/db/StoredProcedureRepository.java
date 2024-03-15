@@ -30,11 +30,11 @@ public class StoredProcedureRepository {
         ArrayList<FacturaDbDTO> dbBillDTOS = new ArrayList<>(facturaRows.size());
         for (Object[] b : facturaRows) {
             FacturaDbDTO billDto = new FacturaDbDTO(
-                    (Number) b[0],
                     (Number) b[1],
+                    (Number) b[4],
                     (Number) b[2],
                     (Number) b[3],
-                    mappingDbProducts(productsRows).stream().filter(dbProductsDTO -> dbProductsDTO.dbBillId().equals(b[4])).toList()
+                    mappingDbProducts(productsRows).stream().filter(dbProductsDTO -> dbProductsDTO.dbBillId().equals(b[1])).toList()
             );
             dbBillDTOS.add(billDto);
         }

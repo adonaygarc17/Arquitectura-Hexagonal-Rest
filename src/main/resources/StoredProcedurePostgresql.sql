@@ -11,6 +11,19 @@ CREATE OR REPLACE FUNCTION GetAllBills()
     END;
 ';
 
+CREATE OR REPLACE FUNCTION GetAllBills()
+    RETURNS SETOF facturadb AS '
+    BEGIN
+        RETURN QUERY
+            SELECT facturasubtotal AS subtotal,
+                   totaldiscount AS discountAmount,
+                   facturatax AS taxes,
+                   total AS amountToPay,
+                   ID AS id
+            FROM facturadb;
+    END;
+' LANGUAGE plpgsql;
+
 CREATE OR REPLACE FUNCTION GetAllProducts()
     RETURNS SETOF productdb LANGUAGE plpgsql AS '
     BEGIN
